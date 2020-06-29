@@ -1,0 +1,11 @@
+{
+
+	"User_LoopCount":"50"
+	"Web_FirstName":"https://www.bestrandoms.com/random-names"
+	"Web_LastName":"https://www.bestrandoms.com/random-last-names"
+	"Web_Address":"https://www.bestrandoms.com/random-address-in-uk"
+	"Excel_Preference_Interval_FilePath":"UserDetails\Preferences_Intervals.xlsx"
+	"Excel_UserDetails_FilePath":"C:\Users\moadm\OneDrive\Documents\UiPath\ContentAggregator\UserDetails\UserDetails.xlsx"
+
+
+}
