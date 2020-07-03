@@ -1,0 +1,415 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Gathering_User_Details" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1057.14285714286,5408" sap2010:WorkflowViewState.IdRef="Gathering_User_Details_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="26">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="22">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Gathering_User_Details" sap:VirtualizedContainerService.HintSize="716.571428571429,5242.85714285714" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="sd:DataTable" Name="UsersDB" />
+      <Variable x:TypeArguments="x:Int32" Name="User_LoopCount" />
+      <Variable x:TypeArguments="x:String" Name="config_string" />
+      <Variable x:TypeArguments="njl:JArray" Name="config_json" />
+      <Variable x:TypeArguments="sd:DataTable" Name="UserDT" />
+      <Variable x:TypeArguments="x:Int32" Name="Unique_id" />
+      <Variable x:TypeArguments="x:String" Name="Country_Var" />
+      <Variable x:TypeArguments="x:String" Name="Email_Var" />
+      <Variable x:TypeArguments="x:String" Name="Interval_Var" />
+      <Variable x:TypeArguments="x:String" Name="Phone_Var" />
+      <Variable x:TypeArguments="x:Int32" Name="rows" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:ReadTextFile Content="[config_string]" DisplayName="Read Text File" FileName="C:\Users\moadm\OneDrive\Documents\UiPath\ContentAggregator\config.txt" sap:VirtualizedContainerService.HintSize="674.285714285714,80.5714285714286" sap2010:WorkflowViewState.IdRef="ReadTextFile_1" />
+    <ui:DeserializeJsonArray DisplayName="Deserialize JSON Array" sap:VirtualizedContainerService.HintSize="674.285714285714,61.1428571428571" sap2010:WorkflowViewState.IdRef="DeserializeJsonArray_1" JsonArray="[config_json]" JsonString="[config_string]" />
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="674.285714285714,258.285714285714" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" WorkbookPath="[config_json(0)(&quot;userdatabase&quot;).ToString]">
+      <ui:ExcelApplicationScope.Body>
+        <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376.571428571429,149.714285714286" sap2010:WorkflowViewState.IdRef="Sequence_12">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:ExcelReadRange AddHeaders="True" DataTable="[UserDT]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="334.285714285714,58.2857142857143" sap2010:WorkflowViewState.IdRef="ExcelReadRange_2" SheetName="Sheet1">
+              <ui:ExcelReadRange.Range>
+                <InArgument x:TypeArguments="x:String">
+                  <Literal x:TypeArguments="x:String" Value="" />
+                </InArgument>
+              </ui:ExcelReadRange.Range>
+            </ui:ExcelReadRange>
+          </Sequence>
+        </ActivityAction>
+      </ui:ExcelApplicationScope.Body>
+    </ui:ExcelApplicationScope>
+    <Assign sap:VirtualizedContainerService.HintSize="674.285714285714,61.1428571428571" sap2010:WorkflowViewState.IdRef="Assign_13">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Int32">[Unique_id]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Int32">[UserDT.Rows.Count]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="674.285714285714,61.1428571428571" sap2010:WorkflowViewState.IdRef="Assign_4">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Int32">[User_LoopCount]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Int32">0</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Sequence DisplayName="Web" sap:VirtualizedContainerService.HintSize="674.285714285714,4429.14285714286" sap2010:WorkflowViewState.IdRef="Sequence_6">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Name="City_Text" />
+        <Variable x:TypeArguments="x:String" Name="Zip_Text" />
+        <Variable x:TypeArguments="x:String" Name="Street_Text" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:OpenBrowser CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Open https://www.bestrandoms.com/random-names" sap:VirtualizedContainerService.HintSize="632,4011.42857142857" sap2010:WorkflowViewState.IdRef="OpenBrowser_3" Url="[config_json(0)(&quot;datafirstname&quot;).ToString]">
+        <ui:OpenBrowser.Body>
+          <ActivityAction x:TypeArguments="x:Object">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Loop Layer" sap:VirtualizedContainerService.HintSize="597.714285714286,3908.57142857143" sap2010:WorkflowViewState.IdRef="Sequence_9">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="sd:DataTable" Name="Preferences_Interval" />
+                <Variable x:TypeArguments="x:String" Name="Street_Var" />
+                <Variable x:TypeArguments="x:String" Name="City_Var" />
+                <Variable x:TypeArguments="x:String" Name="Preference_Var" />
+                <Variable x:TypeArguments="x:String" Name="First_Name_Text" />
+                <Variable x:TypeArguments="x:String" Name="Last_Name_Text" />
+                <Variable x:TypeArguments="x:String" Name="Zip_Var" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:InterruptibleWhile DisplayName="While" sap:VirtualizedContainerService.HintSize="555.428571428571,3817.14285714286" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
+                <ui:InterruptibleWhile.Body>
+                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="518.857142857143,3648" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="476.571428571429,3393.71428571429" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="x:String" Name="Phone_Text" />
+                        <Variable x:TypeArguments="x:String" Name="Country_Text" />
+                      </Sequence.Variables>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:NavigateTo Browser="{x:Null}" DisplayName="Navigate To" sap:VirtualizedContainerService.HintSize="434.285714285714,58.2857142857143" sap2010:WorkflowViewState.IdRef="NavigateTo_3" Url="[config_json(0)(&quot;datafirstname&quot;).ToString]" />
+                      <Assign sap:VirtualizedContainerService.HintSize="434.285714285714,61.1428571428571" sap2010:WorkflowViewState.IdRef="Assign_12">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Int32">[Unique_id]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Int32">[Unique_id + 1]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <ui:GetFullText DisplayName="Get First Name Text" sap:VirtualizedContainerService.HintSize="434.285714285714,105.142857142857" sap2010:WorkflowViewState.IdRef="GetFullText_2" IgnoreHidden="False">
+                        <ui:GetFullText.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="4cb35a5f-b025-46c2-83c8-3274da0c40a9" InformativeScreenshot="47b23b4a7e950b6369295b73fcc1831a" Selector="&lt;html app='chrome.exe' omit:htmlwindowname='hQN7KG23' title='Random Names | Best Random Tools' /&gt;&lt;webctrl parentid='main' tag='SPAN' parentclass='text-center font-18' idx='1' /&gt;" WaitForReady="COMPLETE">
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                          </ui:Target>
+                        </ui:GetFullText.Target>
+                        <ui:GetFullText.Text>
+                          <OutArgument x:TypeArguments="x:String">[First_Name_Text]</OutArgument>
+                        </ui:GetFullText.Text>
+                      </ui:GetFullText>
+                      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="434.285714285714,62.8571428571429" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[First_Name_Text]" />
+                      <ui:NavigateTo Browser="{x:Null}" DisplayName="Navigate To Last Name URL" sap:VirtualizedContainerService.HintSize="434.285714285714,58.2857142857143" sap2010:WorkflowViewState.IdRef="NavigateTo_1" Url="[config_json(0)(&quot;datalastname&quot;).ToString]" />
+                      <ui:GetFullText IgnoreHidden="{x:Null}" DisplayName="Get Last Name Text" sap:VirtualizedContainerService.HintSize="434.285714285714,105.142857142857" sap2010:WorkflowViewState.IdRef="GetFullText_3">
+                        <ui:GetFullText.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="820eef8c-4c18-440f-880a-24bd491f1d98" InformativeScreenshot="6a55674868aa4ea748b4e8404f10837e" Selector="&lt;webctrl parentid='main' tag='SPAN' parentclass='text-center font-18' idx='1' /&gt;">
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                            <ui:Target.WaitForReady>
+                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                            </ui:Target.WaitForReady>
+                          </ui:Target>
+                        </ui:GetFullText.Target>
+                        <ui:GetFullText.Text>
+                          <OutArgument x:TypeArguments="x:String">[Last_Name_Text]</OutArgument>
+                        </ui:GetFullText.Text>
+                      </ui:GetFullText>
+                      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="434.285714285714,62.8571428571429" sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="[Last_Name_Text]" />
+                      <ui:NavigateTo Browser="{x:Null}" DisplayName="Navigate To" sap:VirtualizedContainerService.HintSize="434.285714285714,58.2857142857143" sap2010:WorkflowViewState.IdRef="NavigateTo_2" Url="[config_json(0)(&quot;dataaddress&quot;).ToString]" />
+                      <ui:GetFullText IgnoreHidden="{x:Null}" DisplayName="Get Address Street Text" sap:VirtualizedContainerService.HintSize="434.285714285714,105.142857142857" sap2010:WorkflowViewState.IdRef="GetFullText_4">
+                        <ui:GetFullText.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="d52ad474-29bf-4618-84a0-8d964574fe4b" InformativeScreenshot="8ebde8b97a2ef007c47ff380a92ba392" Selector="&lt;webctrl parentid='main' tag='SPAN' css-selector='body&amp;gt;section&amp;gt;div&amp;gt;div&amp;gt;ul&amp;gt;li&amp;gt;p&amp;gt;span' parentclass='col-sm-6' idx='1' /&gt;">
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                            <ui:Target.WaitForReady>
+                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                            </ui:Target.WaitForReady>
+                          </ui:Target>
+                        </ui:GetFullText.Target>
+                        <ui:GetFullText.Text>
+                          <OutArgument x:TypeArguments="x:String">[Street_Text]</OutArgument>
+                        </ui:GetFullText.Text>
+                      </ui:GetFullText>
+                      <Assign sap:VirtualizedContainerService.HintSize="434.285714285714,61.1428571428571" sap2010:WorkflowViewState.IdRef="Assign_1">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[Street_Var]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">[Street_Text.Split(":"c)(1).Trim]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="434.285714285714,62.8571428571429" sap2010:WorkflowViewState.IdRef="WriteLine_4" Text="[Street_Var]" />
+                      <ui:GetFullText IgnoreHidden="{x:Null}" DisplayName="Get Address City Text" sap:VirtualizedContainerService.HintSize="434.285714285714,105.142857142857" sap2010:WorkflowViewState.IdRef="GetFullText_5">
+                        <ui:GetFullText.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="4d6e3baa-1aeb-4a95-a865-09adb980deb9" InformativeScreenshot="a914f854dce716ead555f85044e34805" Selector="&lt;webctrl parentid='main' tag='SPAN' css-selector='body&amp;gt;section&amp;gt;div&amp;gt;div&amp;gt;ul&amp;gt;li&amp;gt;p&amp;gt;span' parentclass='col-sm-6' idx='2' /&gt;">
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                            <ui:Target.WaitForReady>
+                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                            </ui:Target.WaitForReady>
+                          </ui:Target>
+                        </ui:GetFullText.Target>
+                        <ui:GetFullText.Text>
+                          <OutArgument x:TypeArguments="x:String">[City_Text]</OutArgument>
+                        </ui:GetFullText.Text>
+                      </ui:GetFullText>
+                      <Assign sap:VirtualizedContainerService.HintSize="434.285714285714,61.1428571428571" sap2010:WorkflowViewState.IdRef="Assign_2">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[City_Var]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">[City_Text.Split(":"c)(1).Trim]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="434.285714285714,62.8571428571429" sap2010:WorkflowViewState.IdRef="WriteLine_5" Text="[City_Var]" />
+                      <ui:GetFullText IgnoreHidden="{x:Null}" DisplayName="Get Address Zip Text" sap:VirtualizedContainerService.HintSize="434.285714285714,105.142857142857" sap2010:WorkflowViewState.IdRef="GetFullText_6">
+                        <ui:GetFullText.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="ed5017ee-1707-429f-8167-4a256c090116" InformativeScreenshot="5f1b803c94d3a5a2262acb03d3312978" Selector="&lt;webctrl parentid='main' tag='SPAN' css-selector='body&amp;gt;section&amp;gt;div&amp;gt;div&amp;gt;ul&amp;gt;li&amp;gt;p&amp;gt;span' idx='4' /&gt;">
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                            <ui:Target.WaitForReady>
+                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                            </ui:Target.WaitForReady>
+                          </ui:Target>
+                        </ui:GetFullText.Target>
+                        <ui:GetFullText.Text>
+                          <OutArgument x:TypeArguments="x:String">[Zip_Text]</OutArgument>
+                        </ui:GetFullText.Text>
+                      </ui:GetFullText>
+                      <Assign sap:VirtualizedContainerService.HintSize="434.285714285714,61.1428571428571" sap2010:WorkflowViewState.IdRef="Assign_3">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[Zip_Var]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Match(Zip_Text,"([A-Z][A-Z0-9 ]+)").Value.Trim]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="434.285714285714,62.8571428571429" sap2010:WorkflowViewState.IdRef="WriteLine_6" Text="[Zip_Var]" />
+                      <ui:GetFullText IgnoreHidden="{x:Null}" DisplayName="Get Full Text 'SPAN'" sap:VirtualizedContainerService.HintSize="434.285714285714,105.142857142857" sap2010:WorkflowViewState.IdRef="GetFullText_8">
+                        <ui:GetFullText.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="19524012-56f0-4c81-ba10-9ef0cfe19fd7" InformativeScreenshot="363690cc383fcb6a7b313a54a4829254" Selector="&lt;webctrl aaname='  United Kingdom' idx='1' parentid='main' tag='SPAN' /&gt;">
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                            <ui:Target.WaitForReady>
+                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                            </ui:Target.WaitForReady>
+                          </ui:Target>
+                        </ui:GetFullText.Target>
+                        <ui:GetFullText.Text>
+                          <OutArgument x:TypeArguments="x:String">[Country_Text]</OutArgument>
+                        </ui:GetFullText.Text>
+                      </ui:GetFullText>
+                      <Assign sap:VirtualizedContainerService.HintSize="434.285714285714,61.1428571428571" sap2010:WorkflowViewState.IdRef="Assign_11">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[Country_Var]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">[String.Join(" ", Country_Text.Split().Skip(1)).Trim]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <Assign sap:VirtualizedContainerService.HintSize="434.285714285714,61.1428571428571" sap2010:WorkflowViewState.IdRef="Assign_10">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[Email_Var]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">["datascrape9+" + Unique_id.ToString + "@gmail.com"]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <ui:GetFullText IgnoreHidden="{x:Null}" DisplayName="Get Phone Number Text " sap:VirtualizedContainerService.HintSize="434.285714285714,105.142857142857" sap2010:WorkflowViewState.IdRef="GetFullText_7">
+                        <ui:GetFullText.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="35c54b0f-981c-4e7c-954d-cc0e998e2872" InformativeScreenshot="0112f4bc12b6380605d8ce0f526477e4" Selector="&lt;html app='chrome.exe' title='Random Address In United Kingdom | Best Random Tools' /&gt;&#xD;&#xA;&lt;webctrl parentid='main' tag='SPAN' css-selector='body&amp;gt;section&amp;gt;div&amp;gt;div&amp;gt;ul&amp;gt;li&amp;gt;p&amp;gt;span' idx='3' /&gt;&#xD;&#xA;">
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                            <ui:Target.WaitForReady>
+                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                            </ui:Target.WaitForReady>
+                          </ui:Target>
+                        </ui:GetFullText.Target>
+                        <ui:GetFullText.Text>
+                          <OutArgument x:TypeArguments="x:String">[Phone_Text]</OutArgument>
+                        </ui:GetFullText.Text>
+                      </ui:GetFullText>
+                      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="434.285714285714,62.8571428571429" sap2010:WorkflowViewState.IdRef="WriteLine_12" Text="[Phone_Text]" />
+                      <Assign sap:VirtualizedContainerService.HintSize="434.285714285714,61.1428571428571" sap2010:WorkflowViewState.IdRef="Assign_9">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[Phone_Var]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Match(Phone_Text,"([0-9]+ [0-9]+ [0-9]+)").Value.Trim]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="434.285714285714,258.285714285714" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" WorkbookPath="[config_json(0)(&quot;preference_interval&quot;).ToString]">
+                        <ui:ExcelApplicationScope.Body>
+                          <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                            </ActivityAction.Argument>
+                            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376.571428571429,149.714285714286" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:ExcelReadRange AddHeaders="True" DataTable="[Preferences_Interval]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="334.285714285714,58.2857142857143" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" SheetName="Sheet1">
+                                <ui:ExcelReadRange.Range>
+                                  <InArgument x:TypeArguments="x:String">
+                                    <Literal x:TypeArguments="x:String" Value="" />
+                                  </InArgument>
+                                </ui:ExcelReadRange.Range>
+                              </ui:ExcelReadRange>
+                            </Sequence>
+                          </ActivityAction>
+                        </ui:ExcelApplicationScope.Body>
+                      </ui:ExcelApplicationScope>
+                      <Assign sap:VirtualizedContainerService.HintSize="434.285714285714,61.1428571428571" sap2010:WorkflowViewState.IdRef="Assign_7">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[Preference_Var]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">[Preferences_Interval.Rows(User_LoopCount)(0).ToString]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <Assign sap:VirtualizedContainerService.HintSize="434.285714285714,61.1428571428571" sap2010:WorkflowViewState.IdRef="Assign_8">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[Interval_Var]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">[Preferences_Interval.Rows(User_LoopCount)(1).ToString]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="434.285714285714,62.8571428571429" sap2010:WorkflowViewState.IdRef="WriteLine_10" Text="[Preference_Var]" />
+                      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="434.285714285714,62.8571428571429" sap2010:WorkflowViewState.IdRef="WriteLine_11" Text="[Interval_Var]" />
+                    </Sequence>
+                    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{Unique_id, First_Name_Text, Last_Name_Text, Street_Var, City_Var, Zip_Var, Country_Var, Phone_Var, Email_Var, Preference_Var, Interval_Var}]" DataTable="[UserDT]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="476.571428571429,21.7142857142857" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+                    <Assign sap:VirtualizedContainerService.HintSize="476.571428571429,61.1428571428571" sap2010:WorkflowViewState.IdRef="Assign_5">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Int32">[User_LoopCount]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Int32">[User_LoopCount + 1]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </Sequence>
+                </ui:InterruptibleWhile.Body>
+                <ui:InterruptibleWhile.Condition>
+                  <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="User_LoopCount &lt;= Integer.Parse(config_json(0)(&quot;loopcount&quot;).ToString)" sap2010:WorkflowViewState.IdRef="VisualBasicValue`1_1" />
+                </ui:InterruptibleWhile.Condition>
+              </ui:InterruptibleWhile>
+            </Sequence>
+          </ActivityAction>
+        </ui:OpenBrowser.Body>
+      </ui:OpenBrowser>
+      <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="632,286.285714285714" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" WorkbookPath="[config_json(0)(&quot;userdatabase&quot;).ToString]">
+        <ui:ExcelApplicationScope.Body>
+          <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376.571428571429,177.714285714286" sap2010:WorkflowViewState.IdRef="Sequence_11">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:ExcelWriteRange AddHeaders="True" DataTable="[UserDT]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="334.285714285714,86.2857142857143" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_1" SheetName="Sheet1" StartingCell="A1" />
+            </Sequence>
+          </ActivityAction>
+        </ui:ExcelApplicationScope.Body>
+      </ui:ExcelApplicationScope>
+    </Sequence>
+  </Sequence>
+</Activity>
