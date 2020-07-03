@@ -1,0 +1,13 @@
+Dear {0},
+
+Your content delivery for your chosen preference: {1}
+
+{2}
+
+{3}
+
+{4}
+
+
+Kind regards,
+Tobor Inc

@@ -1,0 +1,30 @@
+[
+
+{
+
+"datafirstname":"https://bestrandoms.com/random-names",
+"datalastname":"https://bestrandoms.com/random-last-names",
+"dataaddress":"https://www.bestrandoms.com/random-address-in-uk",
+"userdatabase":"C:\\Users\\moadm\\OneDrive\\Documents\\UiPath\\Database Creation\\Database\\UserDB.xlsx",
+"preference_interval":"C:\\Users\\moadm\\OneDrive\\Documents\\UiPath\\Database Creation\\Database\\Preferences_Intervals.xlsx",
+"loopcount":"1"
+},
+
+{
+"sports1":"https://codepen.io/matthew_htc/pen/NAOPKg",
+"sports2":"https://www.onthisday.com/sport/",
+"sports3":"https://www.bbc.co.uk/sport/"
+},
+
+{
+"tech1":"https://gadgets.ndtv.com/news",
+"tech2":"https://uk.reuters.com/news/archive/technologyNews"
+},
+
+{
+"book1":"https://www.litquotes.com/Random-Quote.php",
+"book2":"https://bookoftheday.org/",
+"book3":"https://www.bookbrowse.com/news/"
+}
+
+]

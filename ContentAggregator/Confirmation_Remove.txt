@@ -1,0 +1,7 @@
+Hi {0},
+
+I woud like to confirm that your details have now been removed.
+
+Regards,
+
+Tobor Inc
